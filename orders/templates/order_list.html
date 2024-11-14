@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% block content %} <br /><br /><br />
+<br />
+<h2>Your Orders</h2>
+<ul>
+  {% for order in orders %}
+  <li>
+    Order #{{ order.id }} - {{ order.status }}
+    <!-- This should render order status -->
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

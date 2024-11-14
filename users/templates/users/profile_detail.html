@@ -1,0 +1,20 @@
+<!-- users/templates/users/profile_detail.html -->
+{% extends 'base.html' %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-muted">Profile Details</h2>
+    <p><strong>Username:</strong> {{ profile.user.username }}</p>
+    <p><strong>Address:</strong> {{ profile.address }}</p>
+    <p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
+    <p><strong>Profile Picture:</strong></p>
+    <img
+      src="{{ profile.profile_picture.url }}"
+      alt="Profile Picture"
+      class="img-fluid"
+    />
+    <a href="{% url 'users:profile_edit' %}" class="btn btn-primary mt-3"
+      >Edit Profile</a
+    >
+  </div>
+</div>
+{% endblock %}

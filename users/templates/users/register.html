@@ -1,0 +1,67 @@
+<!-- users/templates/users/register.html -->
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-4" style="margin-top: 8rem">
+      <!-- Bootstrap Card for registration form -->
+      <div class="card shadow-lg p-4">
+        <h2 class="text-muted text-center mb-4 mt-3">Register</h2>
+        <form action="{% url 'users:user_register' %}" method="POST">
+          {% csrf_token %}
+
+          <!-- Username Field -->
+          <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username</label>
+            <input
+              type="text"
+              name="{{ form.username.name }}"
+              id="{{ form.username.id_for_label }}"
+              class="form-control"
+              value="{{ form.username.value }}"
+            />
+            <span class="text-danger">{{ form.username.errors }}</span>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group my-2">
+            <label for="{{ form.password1.id_for_label }}">Password</label>
+            <input
+              type="password"
+              name="{{ form.password1.name }}"
+              id="{{ form.password1.id_for_label }}"
+              class="form-control"
+              value="{{ form.password1.value }}"
+            />
+            <span class="text-danger">{{ form.password1.errors }}</span>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              name="{{ form.password2.name }}"
+              id="{{ form.password2.id_for_label }}"
+              class="form-control"
+              value="{{ form.password2.value }}"
+            />
+            <span class="text-danger">{{ form.password2.errors }}</span>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-info w-100 my-2">Submit</button>
+        </form>
+
+        <!-- Login Link -->
+        <p class="text-center mt-3">
+          Already have an account?
+          <a href="{% url 'users:login' %}">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+{% endblock %}

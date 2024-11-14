@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<br /><br /><br /><br />
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Update {{ product_name }}</h2>
+
+          <p><strong>Price:</strong> ${{ product_price }}</p>
+          <p><strong>Current Quantity:</strong> {{ product_quantity }}</p>
+
+          <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">{{ form.as_p }}</div>
+            <button type="submit" class="btn btn-primary mt-3">Save</button>
+            <a href="{% url 'cart:cart_list' %}" class="btn btn-secondary mt-3"
+              >Back to Cart</a
+            >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

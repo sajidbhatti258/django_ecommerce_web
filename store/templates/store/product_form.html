@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Product List</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          
+         <h1>{% if object %}Edit{% else %}Add{% endif %} Product</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixyE5mHSoPudGyFEZCMkkjK/IqnbcYFPskvXusvQzIL/p6a9GeG+dPVw3Lj8K65Z0eS0X
+  </body>
+</html>

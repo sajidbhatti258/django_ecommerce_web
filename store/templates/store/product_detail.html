@@ -1,0 +1,96 @@
+{% extends "base.html" %} {% block content %}
+<br />
+<br />
+<div class="container">
+  <!-- Display error messages -->
+  {% if messages %}
+  <div class="alert-container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mt-5" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Product Section -->
+  <div class="row mt-4">
+    <!-- Product Image Column -->
+    <div class="col-md-6 text-center mt-5">
+      <img
+        src="{{ prod.image.url }}"
+        alt="{{ prod.name }}"
+        class="img-fluid rounded"
+        style="height: 400px; object-fit: cover"
+      />
+    </div>
+
+    <!-- Product Details Column -->
+    <div class="col-md-6 mt-5">
+      <h1 class="mb-3">{{ prod.name }}</h1>
+      <p>{{ prod.description }}</p>
+      <p><strong>Price:</strong> ${{ prod.price }}</p>
+
+      <!-- Stock Calculation -->
+      <p><strong>Stock:</strong> {{ available_stock }}</p>
+
+      <!-- Quantity Adjustment Section -->
+      <div class="d-flex align-items-center my-3">
+        <button class="btn btn-secondary me-2" onclick="updateQuantity(-1)">
+          -
+        </button>
+        <input
+          type="text"
+          id="product-quantity"
+          class="form-control text-center"
+          value="1"
+          style="width: 60px"
+          readonly
+        />
+        <button class="btn btn-secondary ms-2" onclick="updateQuantity(1)">
+          +
+        </button>
+      </div>
+
+      <!-- Add to Cart Form -->
+      <form method="post" action="{% url 'cart:add_to_cart' prod.id %}">
+        {% csrf_token %}
+        <input
+          type="number"
+          name="quantity"
+          id="product-quantity-value"
+          value="1"
+          hidden
+        />
+        <button type="submit" class="btn btn-primary btn-lg mt-3">
+          Add to Cart
+        </button>
+      </form>
+      <a
+        href="{% url 'store:product_list' %}"
+        class="btn btn-secondary btn-lg mt-3 ms-2"
+        >Cancel</a
+      >
+      <a
+        href="{% url 'order_create' %}"
+        class="btn btn-secondary btn-lg mt-3 ms-2"
+        >OrderNow</a
+      >
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateQuantity(change) {
+    let displayQuantityField = document.getElementById("product-quantity");
+    let formQuantityField = document.getElementById("product-quantity-value");
+
+    let quantity = parseInt(displayQuantityField.value) + change;
+    if (quantity >= 1) {
+      displayQuantityField.value = quantity;
+      formQuantityField.value = quantity;
+    }
+  }
+</script>
+<hr />
+{% endblock %}

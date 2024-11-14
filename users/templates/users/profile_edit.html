@@ -1,0 +1,15 @@
+<!-- users/templates/users/profile_edit.html -->
+{% extends 'base.html' %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-muted">Edit Profile</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+    <a href="{% url 'users:profile_detail' %}" class="btn btn-secondary mt-3"
+      >Cancel</a
+    >
+  </div>
+</div>
+{% endblock %}

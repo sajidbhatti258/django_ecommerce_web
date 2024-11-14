@@ -1,0 +1,25 @@
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Product List</h1>
+
+    {% for product in products %}
+    <div class="product">
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description|custom_filters }}</p>
+      <!-- Applying custom filter -->
+      <p>Price: {{ product.price }}</p>
+      <button>Add to Cart</button>
+    </div>
+    {% endfor %}
+
+    <p>Total Products: {{ products|length }}</p>
+  </body>
+</html>

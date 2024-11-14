@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %} <br /><br /><br /><br /><br />
+<div class="container my-5">
+  <!-- Button to Show Card Message -->
+  <div class="text-center">
+    <button class="btn btn-primary" onclick="showCard()">
+      Show Card Message
+    </button>
+  </div>
+
+  <!-- Card Message (Initially Hidden) -->
+  <div
+    id="cardMessage"
+    class="card mt-4 mx-auto"
+    style="display: none; max-width: 400px"
+  >
+    <div class="card-body">
+      <h5 class="card-title text-center">Notification</h5>
+      <p class="card-text text-center">It's working!</p>
+      <div class="text-center">
+        <a href="{% url 'store:product_list' %}"
+          ><button class="btn btn-secondary" onclick="hideCard()">
+            Close
+          </button></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript to Show/Hide Card -->
+<script>
+  function showCard() {
+    document.getElementById("cardMessage").style.display = "block";
+  }
+
+  function hideCard() {
+    document.getElementById("cardMessage").style.display = "none";
+  }
+</script>
+{% endblock %}
